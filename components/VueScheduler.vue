@@ -120,6 +120,10 @@
                 type: [String, Function],
                 default: () => config.eventDisplay
             },
+            customHourClass: {
+                type: Function,
+                default: () => config.customHourClass
+            },
             disableDialog: {
                 type: Boolean,
                 default: false
@@ -325,6 +329,7 @@
                     props.allDayLabel = this.labels.all_day;
                     props.timeRange = this.timeRange;
                     props.showTimeMarker = this.showTimeMarker;
+                    props.customHourClass = this.customHourClass;
                 }
                 return props;
             },

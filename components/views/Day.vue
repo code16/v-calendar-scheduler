@@ -27,7 +27,8 @@
                     </div>
                     <div class="v-cal-day__hour-block"
                          @click="timeClicked({ date: day.d.toDate(), time: time.hour() })"
-                         :class="[ time.isSame(now, 'hour') ? 'is-now' : '', hourClass ]" v-for="time in day.availableTimes">
+                         :class="[ time.isSame(now, 'hour') ? 'is-now' : '', hourClass, customHourClass({ date: day.d.toDate(), time: time.hour() }) ]"
+                         v-for="time in day.availableTimes">
                         <span class="v-cal-day__hour-block-fill">{{ time | formatTime(use12) }}</span>
                         <div class="v-cal-day__hour-content">
                             <div class="v-cal-event-list">
