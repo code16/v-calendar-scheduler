@@ -150,6 +150,8 @@
             EventBus.$off('day-clicked');
             EventBus.$off('time-clicked');
             EventBus.$off('event-clicked');
+            EventBus.$off('event-mouseenter');
+            EventBus.$off('event-mouseleave');
         },
         methods: {
             openEventDialog(data) {
@@ -248,6 +250,12 @@
                 });
                 EventBus.$on('event-clicked', (event) => {
                     this.$emit('event-clicked', event._e);
+                });
+                EventBus.$on('event-mouseenter', (event, mouseEvent) => {
+                    this.$emit('event-mouseenter', event._e, mouseEvent);
+                });
+                EventBus.$on('event-mouseleave', (event, mouseEvent) => {
+                    this.$emit('event-mouseleave', event._e, mouseEvent);
                 });
             },
             goToToday() {

@@ -3,6 +3,8 @@
          :title="event.startTime | formatEventTime(use12) + ' - ' + event.displayText"
          :class="eventClasses"
          @click.stop="eventClicked"
+         @mouseenter="eventMouseenter"
+         @mouseleave="eventMouseleave"
          :style="eventStyles">
         <span class="v-cal-event-time">{{ event.startTime | formatEventTime(use12) }}</span>
         <span class="v-cal-event-name">{{ event.displayText }}</span>
@@ -47,6 +49,12 @@
         methods: {
             eventClicked() {
                 EventBus.$emit('event-clicked', this.event);
+            },
+            eventMouseenter(e) {
+                EventBus.$emit('event-mouseenter', this.event, e);
+            },
+            eventMouseleave(e) {
+                EventBus.$emit('event-mouseleave', this.event, e);
             },
             getAndSetAncestorHeight() {
                 this.ancestorHeight = this.findAncestor(this.$refs.event_block, 'v-cal-day__hour-content').offsetHeight;
