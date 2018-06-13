@@ -11,6 +11,7 @@
             <div class="v-cal-days__wrapper">
                 <div class="v-cal-day v-cal-day--day" :class="{ 'is-today': day.isToday }" v-if="day !== null">
                     <div class="v-cal-day__hour-block"
+                         :class="customHourClass({ date: day.d.toDate(), time: null })"
                          @click="timeClicked({ date: day.d.toDate(), time: null })">
                         <span class="v-cal-day__hour-block-fill">00:00 <template v-if="use12">PM</template></span>
                         <div class="v-cal-day__hour-content">

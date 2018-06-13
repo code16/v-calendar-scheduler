@@ -20,6 +20,7 @@
         <div class="v-cal-day v-cal-day--week" v-for="day in days" :class="{ 'is-today': day.isToday, 'is-disabled': day.isDisabled }">
 
           <div class="v-cal-day__hour-block all-day"
+              :class="customHourClass({ date: day.d.toDate(), time:null })"
                @click="timeClicked({ date: day.d.toDate(), time: null })">
             <span class="v-cal-day__hour-block-fill">00:00 <template v-if="use12">PM</template></span>
             <div class="v-cal-day__hour-content">
