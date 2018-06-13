@@ -122,7 +122,7 @@
             },
             customEventClass: {
                 type: Function,
-                default: () => config.customEventClass
+                default: () => config.customEventClass,
             },
             disableDialog: {
                 type: Boolean,
