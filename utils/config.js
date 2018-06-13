@@ -25,7 +25,7 @@ let config = {
     use12: false,
     showTimeMarker: true,
     eventDisplay: null,
-    customHourClass: ()=>{}
+    customHourClass: ()=>{},
 };
 
 export default config
