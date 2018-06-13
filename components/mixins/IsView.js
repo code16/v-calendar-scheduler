@@ -17,6 +17,9 @@ export default {
         use12: {
             type: Boolean,
             required: true
+        },
+        customEventClass: {
+            type: Function
         }
     },
     methods: {
