@@ -122,7 +122,7 @@
             },
             customHourClass: {
                 type: Function,
-                default: () => config.customHourClass
+                default: () => config.customHourClass,
             },
             disableDialog: {
                 type: Boolean,
