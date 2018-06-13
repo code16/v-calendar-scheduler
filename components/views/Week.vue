@@ -31,6 +31,7 @@
                         :class="customEventClass(event._e)"
                         :key="index"
                         :event="event"
+                        :has-dynamic-size="false"
                         :use12="use12">
                 </event-item>
 
@@ -95,7 +96,7 @@
 
                 let now = moment();
 
-                let temp = moment( this.activeDate ).day(0);
+                let temp = moment( this.activeDate ).day(moment.localeData().firstDayOfWeek());
                 let w = temp.week();
 
                 this.days = [];
