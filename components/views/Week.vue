@@ -27,6 +27,7 @@
 
                 <event-item
                         v-for="event, index in day.events.filter(e => !e.startTime)"
+                        :class="customEventClass(event._e)"
                         :key="index"
                         :event="event"
                         :use12="use12">
@@ -44,6 +45,7 @@
               <div class="v-cal-event-list">
                 <event-item
                         v-for="event, index in day.events"
+                        :class="customEventClass(event._e)"
                         :key="index"
                         :event="event"
                         :use12="use12"

@@ -17,6 +17,7 @@
                             <div class="v-cal-event-list" :class="{'tiny-events': day.events.filter(e => !e.startTime).length > 2}">
                                 <event-item
                                         v-for="event,index in day.events.filter(e => !e.startTime)"
+                                        :class="customEventClass(event._e)"
                                         :key="index"
                                         :event="event"
                                         :use12="use12"
@@ -34,6 +35,7 @@
                                 <event-item
                                         v-for="event, index in day.events"
                                         v-if="event.startTime && time.hours() === event.startTime.hours()"
+                                        :class="customEventClass(event._e)"
                                         :key="index"
                                         :event="event"
                                         :use12="use12">

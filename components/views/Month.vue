@@ -16,6 +16,7 @@
                 <div class="v-cal-event-list">
                     <event-item
                             v-for="event, index in day.events"
+                            :class="customEventClass(event._e)"
                             :key="index"
                             :has-dynamic-size="false"
                             :event="event"

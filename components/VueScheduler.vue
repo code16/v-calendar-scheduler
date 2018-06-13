@@ -120,6 +120,10 @@
                 type: [String, Function],
                 default: () => config.eventDisplay
             },
+            customEventClass: {
+                type: Function,
+                default: () => config.customEventClass
+            },
             disableDialog: {
                 type: Boolean,
                 default: false
@@ -310,7 +314,8 @@
                     use12: this.use12,
                     events: this.newEvents.filter( event => {
                         return event.date.isSame(this.activeDate, this.activeView);
-                    })
+                    }),
+                    customEventClass: this.customEventClass
                 };
 
                 if ( this.activeView === 'week' || this.activeView === 'day') {
