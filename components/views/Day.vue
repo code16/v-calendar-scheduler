@@ -33,7 +33,7 @@
                          v-for="time in day.availableTimes">
                         <span class="v-cal-day__hour-block-fill">{{ time | formatTime(use12) }}</span>
                         <div class="v-cal-day__hour-content">
-                            <div class="v-cal-event-list">
+                            <event-list-hour :day="day" :time="time" :draggable="draggable">
                                 <event-item
                                         v-for="event, index in day.events"
                                         v-if="event.startTime && time.hours() === event.startTime.hours()"
@@ -42,7 +42,7 @@
                                         :event="event"
                                         :use12="use12">
                                 </event-item>
-                            </div>
+                            </event-list-hour>
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,12 @@
     import EventItem from '../EventItem';
     import IsView from '../mixins/IsView';
     import ShowsTimes from '../mixins/ShowsTimes';
+    import EventListHour from '../EventListHour';
 
     export default {
         name: "day",
         mixins: [ IsView, ShowsTimes ],
-        components: { EventItem },
+        components: { EventItem, EventListHour },
         data() {
             return {
                 day: null

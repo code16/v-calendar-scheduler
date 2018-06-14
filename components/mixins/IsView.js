@@ -20,6 +20,9 @@ export default {
         },
         customEventClass: {
             type: Function
+        },
+        draggable: {
+            type: Boolean
         }
     },
     methods: {

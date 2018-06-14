@@ -120,6 +120,10 @@
                 type: [String, Function],
                 default: () => config.eventDisplay
             },
+            draggable: {
+                type: Boolean,
+                default: () => config.draggable
+            },
             customHourClass: {
                 type: Function,
                 default: () => config.customHourClass,
@@ -265,6 +269,9 @@
                 EventBus.$on('event-mouseleave', (event, mouseEvent) => {
                     this.$emit('event-mouseleave', event._e, mouseEvent);
                 });
+                EventBus.$on('event-changed', (event, cancel) => {
+                    this.$emit('event-changed', event._e, cancel);
+                });
             },
             goToToday() {
                 this.activeDate = moment(this.today);
@@ -327,7 +334,8 @@
                     events: this.newEvents.filter( event => {
                         return event.date.isSame(this.activeDate, this.activeView);
                     }),
-                    customEventClass: this.customEventClass
+                    customEventClass: this.customEventClass,
+                    draggable: this.draggable
                 };
 
                 if ( this.activeView === 'week' || this.activeView === 'day') {
