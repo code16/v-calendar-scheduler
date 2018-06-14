@@ -27,7 +27,8 @@
     "events"
   ],
   "dependencies": {
-    "moment": "^2.22.1"
+    "moment": "^2.22.1",
+    "vuedraggable": "^2.16.0"
   },
   "peerDependencies": {
     "vue": "^2.5.2"

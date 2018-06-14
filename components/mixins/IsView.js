@@ -17,6 +17,9 @@ export default {
         use12: {
             type: Boolean,
             required: true
+        },
+        draggable: {
+            type: Boolean
         }
     },
     methods: {

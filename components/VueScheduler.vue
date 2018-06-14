@@ -120,6 +120,10 @@
                 type: [String, Function],
                 default: () => config.eventDisplay
             },
+            draggable: {
+                type: Boolean,
+                default: () => config.draggable
+            },
             disableDialog: {
                 type: Boolean,
                 default: false
@@ -249,6 +253,9 @@
                 EventBus.$on('event-clicked', (event) => {
                     this.$emit('event-clicked', event._e);
                 });
+                EventBus.$on('event-changed', (event, cancel) => {
+                    this.$emit('event-changed', event._e, cancel);
+                });
             },
             goToToday() {
                 this.activeDate = moment(this.today);
@@ -310,7 +317,8 @@
                     use12: this.use12,
                     events: this.newEvents.filter( event => {
                         return event.date.isSame(this.activeDate, this.activeView);
-                    })
+                    }),
+                    draggable: this.draggable
                 };
 
                 if ( this.activeView === 'week' || this.activeView === 'day') {

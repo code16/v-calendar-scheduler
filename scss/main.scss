@@ -308,6 +308,10 @@
     .v-cal-event-list {
       display: flex;
 
+      &--hour {
+        height:100%;
+      }
+
       &.tiny-events {
         display: flex;
         flex-wrap: wrap;
