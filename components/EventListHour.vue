@@ -2,7 +2,7 @@
     <draggable
         class="v-cal-event-list v-cal-event-list--hour"
         :value="day.events"
-        :options="{ group:'event', disabled:!draggable }"
+        :options="{ group:'event', disabled:!draggable, filter:'.v-cal-event-item--disabled' }"
         @start="dragStart"
         @change="dragChanged"
     >
