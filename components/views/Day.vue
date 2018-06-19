@@ -36,6 +36,7 @@
                                         v-if="event.startTime && time.hours() === event.startTime.hours()"
                                         :key="index"
                                         :event="event"
+                                        :format-time="formatEventTime"
                                         :use12="use12">
                                 </event-item>
                             </div>

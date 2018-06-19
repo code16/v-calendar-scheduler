@@ -24,7 +24,8 @@ let config = {
     initialView: 'month',
     use12: false,
     showTimeMarker: true,
-    eventDisplay: null
+    eventDisplay: null,
+    formatEventTime: null,
 };
 
 export default config

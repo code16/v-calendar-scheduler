@@ -127,6 +127,10 @@
             eventDialogConfig: {
                 type: Object,
                 default: () => { return {} }
+            },
+            formatEventTime: {
+                type: Function,
+                default: config.formatEventTime
             }
         },
         data() {
@@ -317,6 +321,7 @@
                     props.allDayLabel = this.labels.all_day;
                     props.timeRange = this.timeRange;
                     props.showTimeMarker = this.showTimeMarker;
+                    props.formatEventTime = this.formatEventTime;
                 }
                 return props;
             },
