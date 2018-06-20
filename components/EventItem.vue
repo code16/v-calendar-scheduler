@@ -6,7 +6,10 @@
          @mouseenter="eventMouseenter"
          @mouseleave="eventMouseleave"
          :style="eventStyles">
-        <span class="v-cal-event-time">{{ event.startTime | formatEventTime(use12) }}</span>
+        <span class="v-cal-event-time">
+            <template v-if="formatTime">{{ formatTime(event) }}</template>
+            <template v-else>{{ event.startTime | formatEventTime(use12) }}</template>
+        </span>
         <span class="v-cal-event-name">{{ event.displayText }}</span>
     </div>
 </template>
@@ -29,6 +32,9 @@
             hasDynamicSize: {
                 type: Boolean,
                 default: true
+            },
+            formatTime: {
+                type: Function
             }
         },
         data() {

@@ -25,6 +25,7 @@ let config = {
     use12: false,
     showTimeMarker: true,
     eventDisplay: null,
+    formatEventTime: null,
     draggable: false,
     customHourClass: ()=>{},
     customEventClass: ()=>{},

@@ -14,6 +14,9 @@ export default {
       type: String,
       default: () => config.labels.all_day
     },
+    formatEventTime: {
+      type: Function
+    },
     customHourClass: {
       type:Function
     }

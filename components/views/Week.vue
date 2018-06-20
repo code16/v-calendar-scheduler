@@ -52,6 +52,7 @@
                         :key="index"
                         :event="event"
                         :use12="use12"
+                        :format-time="formatEventTime"
                         v-if="event.startTime && time.hours() === event.startTime.hours()">
                 </event-item>
               </event-list-hour>

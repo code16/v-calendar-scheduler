@@ -139,6 +139,10 @@
             eventDialogConfig: {
                 type: Object,
                 default: () => { return {} }
+            },
+            formatEventTime: {
+                type: Function,
+                default: config.formatEventTime
             }
         },
         data() {
@@ -343,6 +347,7 @@
                     props.timeRange = this.timeRange;
                     props.showTimeMarker = this.showTimeMarker;
                     props.customHourClass = this.customHourClass;
+                    props.formatEventTime = this.formatEventTime;
                 }
                 return props;
             },

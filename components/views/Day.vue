@@ -40,6 +40,7 @@
                                         :class="customEventClass(event._e)"
                                         :key="index"
                                         :event="event"
+                                        :format-time="formatEventTime"
                                         :use12="use12">
                                 </event-item>
                             </event-list-hour>
