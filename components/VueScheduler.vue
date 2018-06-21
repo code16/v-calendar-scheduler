@@ -140,6 +140,14 @@
                 type: Object,
                 default: () => { return {} }
             },
+            collapseEvents: {
+                type: Boolean,
+                default: () => config.collapseEvents
+            },
+            collapseAfter: {
+                type: Number,
+                default:() => config.collapseAfter
+            },
             formatEventTime: {
                 type: Function,
                 default: config.formatEventTime
@@ -168,6 +176,7 @@
             EventBus.$off('event-clicked');
             EventBus.$off('event-mouseenter');
             EventBus.$off('event-mouseleave');
+            EventBus.$off('more-events-clicked');
         },
         methods: {
             openEventDialog(data) {
@@ -276,6 +285,9 @@
                 EventBus.$on('event-changed', (event, cancel) => {
                     this.$emit('event-changed', event._e, cancel);
                 });
+                EventBus.$on('more-events-clicked', (events, e) => {
+                    this.$emit('more-events-clicked', events, e);
+                });
             },
             goToToday() {
                 this.activeDate = moment(this.today);
@@ -348,6 +360,11 @@
                     props.showTimeMarker = this.showTimeMarker;
                     props.customHourClass = this.customHourClass;
                     props.formatEventTime = this.formatEventTime;
+                }
+                else {
+                    props.collapseEvents = this.collapseEvents;
+                    props.collapseAfter = this.collapseAfter;
+                    props.moreEventsLabel = this.labels.more_events;
                 }
                 return props;
             },

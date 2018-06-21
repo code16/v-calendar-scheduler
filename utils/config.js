@@ -7,7 +7,8 @@ export const defaultLabels = {
     month: 'Month',
     week: 'Week',
     day: 'Day',
-    all_day: 'all day'
+    all_day: 'all day',
+    more_events: count => `+ ${count} events`
 };
 
 export const defaultViews = ['month', 'week', 'day'];
@@ -29,6 +30,8 @@ let config = {
     draggable: false,
     customHourClass: ()=>{},
     customEventClass: ()=>{},
+    collapseEvents: false,
+    collapseAfter: 3
 };
 
 export default config
