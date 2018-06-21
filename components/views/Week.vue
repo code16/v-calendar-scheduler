@@ -98,7 +98,7 @@
 
                 let now = moment();
 
-                let temp = moment( this.activeDate ).day(moment.localeData().firstDayOfWeek());
+                let temp = moment( this.activeDate ).weekday(0);
                 let w = temp.week();
 
                 this.days = [];
