@@ -127,6 +127,14 @@
             eventDialogConfig: {
                 type: Object,
                 default: () => { return {} }
+            },
+            collapseEvents: {
+                type: Boolean,
+                default: () => config.collapseEvents
+            },
+            collapseAfter: {
+                type: Number,
+                default:() => config.collapseAfter
             }
         },
         data() {
@@ -150,6 +158,7 @@
             EventBus.$off('day-clicked');
             EventBus.$off('time-clicked');
             EventBus.$off('event-clicked');
+            EventBus.$off('more-events-clicked');
         },
         methods: {
             openEventDialog(data) {
@@ -249,6 +258,9 @@
                 EventBus.$on('event-clicked', (event) => {
                     this.$emit('event-clicked', event._e);
                 });
+                EventBus.$on('more-events-clicked', (events, e) => {
+                    this.$emit('more-events-clicked', events, e);
+                });
             },
             goToToday() {
                 this.activeDate = moment(this.today);
@@ -317,6 +329,11 @@
                     props.allDayLabel = this.labels.all_day;
                     props.timeRange = this.timeRange;
                     props.showTimeMarker = this.showTimeMarker;
+                }
+                else {
+                    props.collapseEvents = this.collapseEvents;
+                    props.collapseAfter = this.collapseAfter;
+                    props.moreEventsLabel = this.labels.more_events;
                 }
                 return props;
             },

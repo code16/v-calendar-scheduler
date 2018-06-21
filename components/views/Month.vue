@@ -22,6 +22,9 @@
                             :use12="use12"
                     >
                     </event-item>
+                    <a v-if="day.collapsedEvents && day.collapsedEvents.length" href="#" @click.stop.prevent="seeMoreClicked(day, $event)">
+                        {{ moreEventsLabel(day.collapsedEvents.length) }}
+                    </a>
                     <!--@click.stop="eventBus.$emit('event-clicked', event)" -->
                 </div>
             </div>
@@ -40,6 +43,17 @@
         name: "month",
         mixins: [ IsView ],
         components: { EventItem },
+        props: {
+            collapseEvents: {
+                type: Boolean
+            },
+            collapseAfter: {
+                type: Number
+            },
+            moreEventsLabel: {
+                type: Function
+            }
+        },
         data() {
             return {
                 weekdays: moment.weekdaysShort(),
@@ -52,6 +66,9 @@
         methods: {
             dayClicked(day) {
                 EventBus.$emit('day-clicked', day.d.toDate())
+            },
+            seeMoreClicked(day, e) {
+                EventBus.$emit('more-events-clicked', day.collapsedEvents, e);
             },
             buildCalendar() {
                 this.calendar = [];
@@ -78,6 +95,11 @@
                                 return moment(a.startTime, 'HH:mm').format('HH') - moment(b.startTime, 'HH:mm').format('HH');
                             })
                     };
+                    if(this.collapseEvents) {
+                        let { events } = newDay;
+                        newDay.events = events.slice(0,this.collapseAfter);
+                        newDay.collapsedEvents = events.slice(this.collapseAfter);
+                    }
                     this.days.push(newDay);
 
                     temp.add( 1, 'day' );
