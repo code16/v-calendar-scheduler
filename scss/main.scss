@@ -342,6 +342,9 @@
       &.is-overlapping {
         flex: none;
       }
+      &.is-col {
+        position: absolute;
+      }
     }
   }
 

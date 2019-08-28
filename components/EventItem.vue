@@ -88,31 +88,33 @@
                 });
 
                 if ( this.hasDynamicSize ) {
-                    styles.push({
-                        'height': this.displayHeight + 'px',
-                    });
+                    let width = 100, x = 0, y = 0;
 
                     if ( this.event.overlaps > 0 ) {
-                        const width = 100 / ( this.event.overlaps + 1 );
-                        styles.push({
-                            'width': width + '%',
-                            'left': width + '%'
-                        });
+                        width *= Math.pow(.75, this.event.overlaps);
+                        x = 100 - width;
                     }
-
                     if ( this.event.startTime.minutes() > 0 ) {
-                        const distance = ( this.ancestorHeight / 60 ) * this.event.startTime.minutes();
-                        styles.push({
-                            'top': distance + 'px'
-                        });
+                        y = ( this.ancestorHeight / 60 ) * this.event.startTime.minutes();
                     }
+                    if( this.event.col ) {
+                        width /= this.event.col.span;
+                        x += width * this.event.col.offset;
+                    }
+                    styles.push({
+                        width: `${width}%`,
+                        height: `${this.displayHeight}px`,
+                        top: `${y}px`,
+                        left: `${x}%`,
+                    })
                 }
 
                 return styles;
             },
             eventClasses() {
                 return {
-                    'is-overlapping': this.event.overlaps > 0
+                    'is-overlapping': this.event.overlaps > 0,
+                    'is-col': this.event.col,
                 }
             }
         },

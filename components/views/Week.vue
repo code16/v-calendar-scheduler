@@ -85,6 +85,7 @@
         },
         mounted() {
             this.buildCalendar();
+            console.dir(moment)
         },
         methods: {
             timeClicked(data) {
@@ -113,7 +114,14 @@
                             return moment(a.startTime).format('HH') - moment(b.startTime).format('HH');
                         });
                     const mappedEvents = dayEvents.map( event => {
-                        event.overlaps = dayEvents.filter( e => moment(event.startTime).isBetween( moment(e.startTime), moment(e.endTime) ) && e !== event ).length;
+                        const sameTimeEvents = dayEvents.filter(e => moment(event.startTime).isSame(e.startTime));
+                        event.overlaps = dayEvents.filter( e => moment(event.startTime).isBetween( moment(e.startTime), moment(e.endTime), null) && e !== event).length;
+                        if(sameTimeEvents.length > 1) {
+                          event.col = {
+                            span: sameTimeEvents.length,
+                            offset: sameTimeEvents.indexOf(event),
+                          };
+                        }
                         return event;
                     });
 
